@@ -27,6 +27,7 @@
         integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous"><!-- jsvectormap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css"
         integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4=" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('admin_assets/css/style.css') }}">
     @yield('style')
 </head> <!--end::Head--> <!--begin::Body-->
 
@@ -72,11 +73,14 @@
             </div> <!--end::Container-->
         </nav> <!--end::Header--> <!--begin::Sidebar-->
         <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark"> <!--begin::Sidebar Brand-->
-            <div class="sidebar-brand"> <!--begin::Brand Link--> <a href="{{route('admin')}}" class="brand-link">
-                    <!--begin::Brand Image--> <img src="{{ asset('admin_assets/assets/img/AdminLTELogo.png') }}"
-                        alt="AdminLTE Logo" class="brand-image opacity-75 shadow"> <!--end::Brand Image-->
-                    <!--begin::Brand Text--> <span class="brand-text fw-light">{{ config('environment.APP_NAME') }}</span> <!--end::Brand Text-->
-                </a> <!--end::Brand Link--> </div> <!--end::Sidebar Brand--> <!--begin::Sidebar Wrapper-->
+            <div class="sidebar-brand"> <!--begin::Brand Link--> 
+                <a href="{{route('admin')}}" class="brand-link">
+                    <!--begin::Brand Image--> 
+                    <img src="{{ asset('admin_assets/assets/img/matrixOneWhite.png') }}"
+                        alt="{{ config('environment.APP_NAME') }} Logo" class="brand-image opacity-75 shadow"> 
+                    <!--end::Brand Image-->
+                </a> <!--end::Brand Link--> 
+            </div> <!--end::Sidebar Brand--> <!--begin::Sidebar Wrapper-->
             <div class="sidebar-wrapper">
                 <nav class="mt-2"> <!--begin::Sidebar Menu-->
                     <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu"

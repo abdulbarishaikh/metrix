@@ -3,3 +3,7 @@
     right: 0;
     bottom: 11px;
 }
+
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header{
+    min-height: 150px;
+}
