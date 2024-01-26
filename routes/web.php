@@ -11,7 +11,7 @@ use App\Livewire\Pages\Services;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BenchProfileController;
-use App\Http\Controllers\Admin\RequirenmentsController;
+use App\Http\Controllers\Admin\RequirementsController;
 use App\Http\Controllers\Admin\PartnersController;
 
 /*
@@ -43,10 +43,10 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/', 'index')->name('bench-index');
             Route::get('/add', 'create')->name('add-bench');
         });
-        Route::controller(RequirenmentsController::class)->prefix('requirenment')
+        Route::controller(RequirementsController::class)->prefix('requirements')
         ->group(function () {
-            Route::get('/', 'index')->name('requirenment-index');
-            Route::get('/add', 'create')->name('add-requirenment');
+            Route::get('/', 'index')->name('requirements-index');
+            Route::get('/add', 'create')->name('add-requirements');
         });
         Route::controller(PartnersController::class)->prefix('partner')
         ->group(function () {

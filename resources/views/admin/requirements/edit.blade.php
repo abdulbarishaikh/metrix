@@ -6,7 +6,7 @@
         <div class="container-fluid"> <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 class="mb-0">Bench Add</h3>
+                    <h3 class="mb-0">Requirements Add</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
@@ -14,7 +14,7 @@
                             <a href="{{route('admin')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('bench-index')}}">Bench Profile</a>
+                            <a href="{{route('bench-index')}}">Requirements</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Add

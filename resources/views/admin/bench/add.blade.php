@@ -14,7 +14,7 @@
                             <a href="{{route('admin')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('bench-index')}}">Bench Profile</a>
+                            <a href="{{route('bench-index')}}">Bench</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Add

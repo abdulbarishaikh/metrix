@@ -5,13 +5,13 @@
         <div class="container-fluid"> <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 class="mb-0">Partners</h3>
+                    <h3 class="mb-0">Requirements</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Partners
+                            Requirements
                         </li>
                     </ol>
                 </div>
@@ -25,7 +25,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="d-flex float-end mb-3">
-                                <a href="{{ route('add-requirenment') }}" class="mt-3">
+                                <a href="{{ route('add-requirements') }}" class="mt-3">
                                     <button class="btn btn-primary"> Add Requirenment</button>
                                 </a>
                             </div>

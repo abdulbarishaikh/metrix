@@ -14,7 +14,7 @@
                             <a href="{{route('admin')}}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{route('bench-index')}}">Partner</a>
+                            <a href="{{route('partner-index')}}">Partner</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Add

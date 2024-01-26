@@ -99,7 +99,7 @@
                             </a> 
                         </li>
                         <li class="nav-item"> 
-                            <a href="{{route('requirenment-index')}}" class="nav-link {{ request()->is('admin/requirenment*') ? 'active' : '' }}"> 
+                            <a href="{{route('requirements-index')}}" class="nav-link {{ request()->is('admin/requirements*') ? 'active' : '' }}"> 
                                 <i class="nav-icon bi bi-briefcase"></i>
                                 <p>Requirenments</p>
                             </a> 
