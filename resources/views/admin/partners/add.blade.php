@@ -244,3 +244,7 @@
     <!--end::App Content-->
 </main>
 @endsection
+
+@section('js')
+    
+@endsection

@@ -29,7 +29,7 @@
                                     <button class="btn btn-primary"> Add Bench</button>
                                 </a>
                             </div>
-                            <table class="table table-bordered" id="bench-datatable">
+                            <table class="table table-bordered ajaxlist" id="bench-datatable">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">Sr No</th>
@@ -61,9 +61,10 @@
 @section('js')
     <script>
         $(function(){
-            $('#bench-datatable').DataTable( {
+            // initDatatable('ajaxlist','admin/bench/list',[],[],100)
+            /* $('#bench-datatable').DataTable( {
                 responsive: true
-            });
+            }); */
         })
     </script>
 @endsection

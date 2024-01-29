@@ -6,6 +6,7 @@
     <title>{{ config('environment.APP_NAME') }} | Dashboard</title><!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="{{ config('environment.APP_NAME') }} | Dashboard">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="author" content="ColorlibHQ">
     <meta name="description"
         content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
@@ -115,6 +116,14 @@
             </div> <!--end::Sidebar Wrapper-->
         </aside> <!--end::Sidebar--> <!--begin::App Main-->
         @yield('content')
+        <div id="toastDefault" class="toast bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header float-end bg-success"> 
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> 
+            </div>
+            <div class="toast-body text-white" id="msg">
+                
+            </div>
+        </div>
         <footer class="app-footer"> <!--begin::To the end-->
             <!--begin::Copyright--> <strong>
                 Copyright &copy; {{date('Y')}}&nbsp;
@@ -124,6 +133,9 @@
             <!--end::Copyright-->
         </footer> <!--end::Footer-->
     </div> <!--end::App Wrapper--> <!--begin::Script--> <!--begin::Third Party Plugin(OverlayScrollbars)-->
+    <script>
+        var baseurl = "{{config('app.url')}}";
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/browser/overlayscrollbars.browser.es6.min.js"
         integrity="sha256-H2VM7BKda+v2Z4+DRy69uknwxjyDRhszjXFhsL4gD3w=" crossorigin="anonymous"></script>
     <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
@@ -135,6 +147,8 @@
     <script src="{{ asset('admin_assets/js/adminlte.js') }}"></script> <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script src="{{ asset('admin_assets/js/jQuery.min.js') }}"></script>
     <script type="text/javascript" src="{{asset('admin_assets/js/datatable/datatables.min.js')}}"></script>
+    <script src="{{ asset('admin_assets/js/common.js') }}"></script> 
+    <script src="{{ asset('admin_assets/js/ss.custom.js') }}"></script> 
     @yield('js')
 </body><!--end::Body-->
 
