@@ -147,8 +147,8 @@
     <script src="{{ asset('admin_assets/js/adminlte.js') }}"></script> <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script src="{{ asset('admin_assets/js/jQuery.min.js') }}"></script>
     <script type="text/javascript" src="{{asset('admin_assets/js/datatable/datatables.min.js')}}"></script>
-    <script src="{{ asset('admin_assets/js/common.js') }}"></script> 
-    <script src="{{ asset('admin_assets/js/ss.custom.js') }}"></script> 
+    <script src="{{ asset('admin_assets/js/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('admin_assets/js/common.js') }}"></script>
     @yield('js')
 </body><!--end::Body-->
 

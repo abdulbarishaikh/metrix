@@ -6,51 +6,83 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Models\BenchProfile;
+use DataTables;
 
 class BenchProfileController extends Controller
 {
     
     public function index(Request $request){
         if($request->ajax()){
-            $data = [];
-            foreach($data as $row){
-                $row[] = "<input type='checkbox' class='check' name='opdids[]' value='".$value->opdid."' id='' >";
-                $row[] = $first_action . $value->patient_name . "</a>";
-                $row[] = $this->opd_prefix . $value->opdid;
-                $row[] = $value->guardian_name;
-                $row[] = $status_html;
-                $row[] = $value->gender;
-                $row[] = $value->mobileno;
-                $row[] = composeStaffNameByString($value->name, $value->surname, $value->employee_id);
-                $row[] = $value->charge_name;
-                // $row[] = $this->customlib->YYYYMMDDHisTodateFormat($value->last_visit, $this->time_format);
-                $row[]  = $time_slape;
-                $row[]  = $timer_html;
-                $row[]     = $action;
-                $dt_data[] = $row;
+            $benchs = BenchProfile::query()->with(['platforms','technology']);
+            return DataTables::eloquent($benchs)
+                ->addIndexColumn(function($query){
+                    return $query->orderByDesc('id');
+                })
+                ->addColumn('platforms.title', function($row){
+                    return $row->platforms?$row->platforms->title:'N/A';
+                })
+                ->addColumn('technology.title', function($row){
+                    return $row->technology?$row->technology->title:'N/A';
+                })
+                ->addColumn('status', function($row){
+                    $html = '';
+                    if($row->status==1){
+                        $html.='<span class="badge text-bg-success">Active</span>';
+                    }else{
+                        $html.='<span class="badge text-bg-warning">Inactive</span>';
+                    }
+                    return $html;
+                })
+                ->addColumn('action', function($row){
+                    
+                    $actionBtn ='<div class="btn-group" role="group" >';
+                    $actionBtn .= '
+                        <button data-id="'.$row->id.'" type="button" class="delete btn btn-danger btn-sm">
+                            <i class="bi bi-trash" type="button" title="Delete"></i>
+                        </button>';
+                    $actionBtn .='
+                        <a href="'.route('edit-bench',['id'=>$row->id]).'">
+                            <button class="btn btn-success btn-sm mx-2">
+                                <span class="bi bi-pencil" aria-hidden="true" type="button" title="Edit"></span>
+                            </button>
+                        </a>
+                    </div>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['status','action'])
+                ->order(function ($query) use ($request) {
+                    $query->orderByDesc('id');
+                    return $query;
+                })
+                ->filter(function ($query) use($request){
+                    if($request->draw >1 ){
+                        $columns = $request->columns;
+                        $searchVal = $request->search['value'];
+                        if($searchVal != '') {
+                            $query->where(function($query)use($searchVal){
+                                $query->where('experience','like','%'.$searchVal.'%')
+                                ->orWhere('exp_band','like','%'.$searchVal.'%')
+                                ->orWhere('mode_delivery','like','%'.$searchVal.'%')
+                                ->orWhere('current_location','like','%'.$searchVal.'%')
+                                ->orWhere('preferred_location','like','%'.$searchVal.'%')
+                                ->orWhere('skills','like','%'.$searchVal.'%')
+                                ->orWhere('professional_summary','like','%'.$searchVal.'%');
+                                $query->orWhereHas('platforms',function($query)use($searchVal){
+                                    $query->where('title','like','%'.$searchVal.'%');
+                                });
+                                $query->orWhereHas('technology',function($query)use($searchVal){
+                                    $query->where('title','like','%'.$searchVal.'%');
+                                });
+                            });
+                        }
+                    }
+                    return $query;
 
-                $i++;
-                $total_patient=$total_patient+1;
-            }
-            $count_data=[
-                'total_patient'=>[],
-                'waiting_ar'=>[],
-                'waiting_op'=>[],
-                'waiting_dr'=>[],
-                'completed_ar'=>[],
-                'completed_op'=>[],
-                'completed_dr'=>[],
-            ];
-            $count_data = 10;
-            $json_data = array(
-                "draw"            => intval($dt_response->draw),
-                "recordsTotal"    => intval($dt_response->recordsTotal),
-                "recordsFiltered" => intval($dt_response->recordsFiltered),
-                "data"            => $dt_data,
-                'count_data'=>$count_data
-            );
-            echo json_encode($json_data);
-            return true;
+                    /* if (request()->has('email')) {
+                        $query->where('email', 'like', "%" . request('email') . "%");
+                    } */
+                }, true)
+            ->make(true);
         }
         return view("admin.bench.list");
     }
@@ -101,5 +133,13 @@ class BenchProfileController extends Controller
     public function edit($bench_id){
         $bench_data = BenchProfile::find($bench_id);
         return view("admin.bench.add",compact('bench_data'));
+    }
+    public function delete($id){
+        BenchProfile::find($id)->delete();
+        return response()->json([
+            'success' => true,
+            'msg' => 'Bench deleted successfully',
+            'url' => route('bench-index')
+        ]);
     }
 }

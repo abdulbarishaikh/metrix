@@ -93,9 +93,61 @@
 @section('js')
     <script>
         $(function(){
-            $('#partners-datatable').DataTable( {
-                responsive: true
+            $('#partners-datatable').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'serverMethod': 'post',
+                ajax: {
+                    url:"{{route('partner-list')}}",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                },
+                // "order": [],
+                columns: [
+                    { data: 'DT_RowIndex', name: 'id',width: "3%",searchable: false,orderable:false  },
+                    { data: 'number',name:'number',width: "7%",searchable: false,orderable:false  },
+                    { data: 'organization_name',name:'organization_name',width: "7%",searchable: false,orderable:false  },
+                    { data: 'website',name:'website',width: "7%",searchable: false,orderable:false  },
+                    { data: 'primary_technology',name:'primary_technology',width: "7%",searchable: false,orderable:false  },
+                    { data: 'technology2',name:'technology2',width: "7%",searchable: false,orderable:false  },
+                    { data: 'technology3',name:'technology3',width: "7%",searchable: false,orderable:false  },
+                    { data: 'global_locaton',name:'global_locaton',width: "7%",searchable: false,orderable:false  },
+                    { data: 'onsite_location1',name:'onsite_location1',width: "7%",searchable: false,orderable:false  },
+                    { data: 'india_location1',name:'india_location1',width: "7%",searchable: false,orderable:false  },
+                    { data: 'india_location2',name:'india_location2',width: "7%",searchable: false,orderable:false  },
+                    { data: 'services',name:'services',width: "7%",searchable: false,orderable:false  },
+                    { data: 'primary_services',name:'primary_services',width: "7%",searchable: false,orderable:false  },
+                    { data: 'staff_augmentation',name:'staff_augmentation',width: "7%",searchable: false,orderable:false  },
+                    { data: 'monthly_budget',name:'monthly_budget',width: "7%",searchable: false,orderable:false  },
+                    { data: 'nda_document',name:'nda_document',width: "7%",searchable: false,orderable:false  },
+                    { data: 'contact1',name:'contact1',width: "7%",searchable: false,orderable:false  },
+                    { data: 'first_name',name:'first_name',width: "7%",searchable: false,orderable:false  },
+                    { data: 'last_name',name:'last_name',width: "7%",searchable: false,orderable:false  },
+                    { data: 'designation',name:'designation',width: "7%",searchable: false,orderable:false  },
+                    { data: 'email_id',name:'email_id',width: "7%",searchable: false,orderable:false  },
+                    { data: 'mobile_number',name:'mobile_number',width: "7%",searchable: false,orderable:false  },
+                    { data: 'location',name:'location',width: "7%",searchable: false,orderable:false  },
+                    { data: 'contact2',name:'contact2',width: "7%",searchable: false,orderable:false  },
+                    { data: 'first_name2',name:'first_name2',width: "7%",searchable: false,orderable:false  },
+                    { data: 'last_name2',name:'last_name2',width: "7%",searchable: false,orderable:false  },
+                    { data: 'designation2',name:'designation2',width: "7%",searchable: false,orderable:false  },
+                    { data: 'email_id2',name:'email_id2',width: "7%",searchable: false,orderable:false  },
+                    { data: 'mobile_number2',name:'mobile_number2',width: "7%",searchable: false,orderable:false  },
+                    { data: 'location2',name:'location2',width: "7%",searchable: false,orderable:false  },
+                    { data: 'status',name:'status',width: "7%",searchable: false,orderable:false  },
+                    { data: 'action',name:'action',width: "7%",searchable: false,orderable:false }
+                ],
             });
-        })
+            $(document).on('click', '.delete', function() {
+                let id = $(this).data('id');
+                var request = {};
+                request.delete = true;
+                request.action = 'Yes, delete it!';
+                request.message = 'Are you sure to delete ?';
+                request.url = '{{ url("admin/partner/delete") }}/' + id;
+                var ret = swalFun(request);
+            });
+        });
     </script>
 @endsection
