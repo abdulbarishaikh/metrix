@@ -119,10 +119,10 @@
                                             <input type="number" class="form-control" id="duration_month" name="duration_month" placeholder="Entrer Current Location" value="{{isset($requirement_data) && !empty($requirement_data)?$requirement_data->duration_month:''}}" > 
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-12">
                                         <div class="mb-3"> 
                                             <label for="remark" class="form-label">Remarks</label> 
-                                            <input type="text" class="form-control" id="remark" name="remark" placeholder="Entrer Remark" value="{{isset($requirement_data) && !empty($requirement_data)?$requirement_data->remark:''}}"> 
+                                            <textarea class="form-control" id="remark" name="remark" placeholder="Entrer Remark">{{isset($requirement_data)&&!empty($requirement_data)?$requirement_data->remark:''}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">

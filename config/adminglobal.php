@@ -5,5 +5,16 @@
         'MODE_DELIVERY'=>['remote','onsite','hybrid'],
         'FUNCTIONAL'=>['functional'=>'Functional','technical'=>'Technical','tech-functional'=>'Techo-Functional'],
         'OPPORTUNITY'=>['full_time'=>'Full Time','c_to_c'=>'CtoC','c_to_h'=>'CtoH'],
+        'GLOBAL_LOCATION'=>[
+            'india_only'=>'India Only',
+            'outside_india_only'=>'Outside India Only',
+            'india_onsite'=>'India & Onsite'
+        ],
+        'STAFF_AUGMENTATION'=>['Yes','No'],
+        'NDA_DOCUMENT'=>[
+            'fully_signed'=>'Fully Signed','submitted'=>'Submitted',
+            'recieved_partner_signed_copy'=>'Recieved Partner Signed Copy',
+            'shared_matrixOne_signed'=>'Shared MatrixOne Signed'
+        ],
     ];
 ?>

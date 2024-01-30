@@ -42,22 +42,28 @@ Route::group(['prefix' => 'admin'], function(){
         ->group(function () {
             Route::get('/', 'index')->name('bench-index');
             Route::get('/add', 'create')->name('add-bench');
-            Route::get('/edit/{id}', 'edit')->name('edit/-bench');
+            Route::get('/edit/{id}', 'edit')->name('edit-bench');
             Route::post('save','save')->name('save-bench');
             Route::post('/list', 'index')->name('bench-list');
+            Route::get('/delete/{id}', 'delete')->name('bench-delete');
         });
         Route::controller(RequirementsController::class)->prefix('requirements')
         ->group(function () {
             Route::get('/', 'index')->name('requirements-index');
             Route::get('/add', 'create')->name('add-requirements');
-            Route::get('/edit/{id}', 'edit')->name('edit/-requirements');
+            Route::get('/edit/{id}', 'edit')->name('edit-requirements');
             Route::post('save','save')->name('save-requirements');
             Route::post('/list', 'index')->name('requirements-list');
+            Route::get('/delete/{id}', 'delete')->name('requirements-delete');
         });
         Route::controller(PartnersController::class)->prefix('partner')
         ->group(function () {
             Route::get('/', 'index')->name('partner-index');
             Route::get('/add', 'create')->name('add-partner');
+            Route::get('/edit/{id}', 'edit')->name('edit-partner');
+            Route::post('save','save')->name('save-partner');
+            Route::post('/list', 'index')->name('partner-list');
+            Route::get('/delete/{id}', 'delete')->name('partner-delete');
         });
     });
 });
